@@ -26,6 +26,18 @@ public class CreateData {
             System.out.print(newFileName);
 
         }
+
+        File folder = new File("/home/jashka/Загрузки");
+        String[] files = folder.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File folder, String name) {
+                return name.endsWith(".apk");
+            }
+        });
+
+        for ( String fileName : files) {
+            System.out.print("File" + fileName + "\n");
+        }
     }
 
 }
