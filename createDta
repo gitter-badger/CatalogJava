@@ -20,12 +20,12 @@ public class CreateData {
         zip.put(archive, ".zip/.gzip//Home/jashka/Downloads");
         mp3.put("MP3", ".mp3/.wav//Home/jashka/Downloads");
 
-        for (String fileN : nameFolder) {
+        /*for (String fileN : nameFolder) {
 
             String newFileName = zip.get(fileN);
             System.out.print(newFileName);
 
-        }
+        }*/
 
         File folder = new File("/home/jashka/Загрузки");
         String[] files = folder.list(new FilenameFilter() {
@@ -35,8 +35,16 @@ public class CreateData {
             }
         });
 
+
         for ( String fileName : files) {
-            System.out.print("File" + fileName + "\n");
+            File oldFile = new File("/home/jashka/Загрузки" + fileName);
+            File newFile = new File("/home/jashka/Загрузки/APK/" + fileName);
+
+            if (oldFile.renameTo(newFile)) {
+                System.out.print("rename:" + fileName + "\n");
+            } else System.out.print("error: " + newFile.getPath() +"\n");
+
+            //System.out.print("File" + fileName + "\n");
         }
     }
 
