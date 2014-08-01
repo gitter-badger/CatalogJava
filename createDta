@@ -5,29 +5,77 @@ import java.util.Map;
 
 public class CreateData {
 
-    Map<String, String> zip;
-    Map<String, String> mp3;
-    File file;
-    String[] nameFolder = new String[] { "MP3", "Archive"};
+    protected String downloads = "";
+    public int i = 0;
+    public String[] files;
 
-    protected String archive = "Archive";
+    CreateData (String pathDownload) {
 
-    public void createData () {
+        this.downloads = pathDownload;
+        System.out.println("this is constructor: path-> " + this.downloads);
 
-        zip = new HashMap<String, String>();
-        mp3 = new HashMap<String, String>();
+    }
 
-        zip.put(archive, ".zip/.gzip//Home/jashka/Downloads");
-        mp3.put("MP3", ".mp3/.wav//Home/jashka/Downloads");
+    public void moveFile (final String[] nameType) {
 
-        /*for (String fileN : nameFolder) {
+        File folder = new File(this.downloads);
+         for ( String type : nameType) {
+             files = folder.list(new FilenameFilter() {
+                 @Override
+                 public boolean accept(File folder, String name) {
+                     return name.endsWith(".zip");
+                 }
+             });
 
-            String newFileName = zip.get(fileN);
-            System.out.print(newFileName);
+         }
 
+        for (int j = 0; j < files.length; ) {
+            j++;
+            System.out.println(files[j]);
+        }
+
+        /*for ( String fileName : files) {
+            File oldFile = new File("/home/jashka/Загрузки/" + fileName);
+            File newFile = new File("/home/jashka/Загрузки/APK/" + fileName);
+
+            if (oldFile.renameTo(newFile)) {
+                System.out.print("rename:" + fileName + "\n");
+            } else System.out.print("error: " + newFile.getPath() +"\n");
         }*/
+    }
 
-        File folder = new File("/home/jashka/Загрузки");
+    public void createData (int param) {
+
+        String[] array          = new String[] {".gzip", ".zip", ".rar", ".tar.gz", ".7z", ".tgz"};
+        String[] music          = new String[] {".mp3", ".waw"};
+        String[] android        = new String[] {".apk"};
+        String[] web            = new String[] {".php", ".js", ".html", ".phtml", ".htm", ".json"};
+        String[] images         = new String[] {".ico", ".jpg", ".png"};
+
+        switch (param) {
+
+            case 1:
+                this.moveFile(array);
+                break;
+            case 2:
+                this.moveFile(music);
+                break;
+            case 3:
+                this.moveFile(android);
+                break;
+            case 4:
+                this.moveFile(web);
+                break;
+            case 5:
+                this.moveFile(images);
+                break;
+            default:
+                System.out.println("Неправильно");
+                break;
+
+        }
+
+        /*File folder = new File("/home/jashka/Загрузки");
         String[] files = folder.list(new FilenameFilter() {
             @Override
             public boolean accept(File folder, String name) {
@@ -35,17 +83,14 @@ public class CreateData {
             }
         });
 
-
         for ( String fileName : files) {
-            File oldFile = new File("/home/jashka/Загрузки" + fileName);
+            File oldFile = new File("/home/jashka/Загрузки/" + fileName);
             File newFile = new File("/home/jashka/Загрузки/APK/" + fileName);
 
             if (oldFile.renameTo(newFile)) {
                 System.out.print("rename:" + fileName + "\n");
             } else System.out.print("error: " + newFile.getPath() +"\n");
-
-            //System.out.print("File" + fileName + "\n");
-        }
+        }*/
     }
 
 }
