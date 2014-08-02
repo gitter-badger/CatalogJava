@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class init {
 
-
-
     public static void main (String[] args) throws IOException {
 
         Scanner scan = new Scanner(System.in);
@@ -19,18 +17,11 @@ public class init {
         System.out.println("3. Android type \t(.apk)");
         System.out.println("4. Web type \t\t(.php, .js, .html, .htm, .phtml, .json)");
         System.out.println("5. Images type \t\t(.ico, .jpg, .png)");
-        System.out.print("\nEnter the world: ");
+        System.out.print("\nEnter the number: ");
 
         int s = scan.nextInt();
 
-        switch (s) {
-            case 1 :
-                data.createData(s);
-                break;
-            default:
-                System.out.println("Неправильно");
-                break;
-        }
+        data.createData(s);
 
     }
 
