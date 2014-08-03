@@ -10,7 +10,7 @@
         "deb" : "/home/jashka/Загрузки/Deb/",
         "exe" : "/home/jashka/Загрузки/Exe/",
         "desktop" : "/home/jashka/Загрузки/Desktop/",
-        "torrent" : "/home/jashka/Загрузки/Torrent"
+        "torrent" : "/home/jashka/Загрузки/Torrent/"
     },
     "archives" : [
         ".gzip",
