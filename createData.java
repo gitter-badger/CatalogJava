@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CreateData {
 
@@ -15,16 +16,17 @@ public class CreateData {
     private   String [] files;
     private   String path;
     private   JSONObject jsonObject    = null;
-    private   String [] archive        = new String [] {".iso", ".gzip", ".zip", ".rar", ".tar.gz", ".7z", ".tgz", ".tar.xz", ".gz", ".jar", ".JAR"};
-    private   String [] music          = new String [] {".mp3", ".waw"};
-    private   String [] android        = new String [] {".apk"};
-    private   String [] deb            = new String [] {".deb"};
-    private   String [] exe            = new String [] {".exe", ".dll"};
-    private   String [] web            = new String [] {".php", ".js", ".html", ".css", ".phtml", ".htm", ".json"};
-    private   String [] desktop        = new String [] {".cpp", ".c", ".java", ".class", ".py"};
-    private   String [] image          = new String [] {".ico", ".jpg", ".png"};
-    private   String [] office         = new String [] {".txt", ".doc", ".docx", ".pdf", ".md", ".xls", ".djvu"};
-    private   String [] torrent        = new String [] {".torrent"};
+
+    private ArrayList<String> archive           = new ArrayList<String>();
+    private ArrayList<String> music             = new ArrayList<String>();
+    private ArrayList<String> android           = new ArrayList<String>();
+    private ArrayList<String> deb               = new ArrayList<String>();
+    private ArrayList<String> exe               = new ArrayList<String>();
+    private ArrayList<String> web               = new ArrayList<String>();
+    private ArrayList<String> desktop           = new ArrayList<String>();
+    private ArrayList<String> image             = new ArrayList<String>();
+    private ArrayList<String> office            = new ArrayList<String>();
+    private ArrayList<String> torrent           = new ArrayList<String>();
 
     private String archives;
     private String musics;
@@ -49,8 +51,50 @@ public class CreateData {
             Object object = jsonParser.parse(new FileReader(files));
             jsonObject = (JSONObject) object;
 
-            JSONArray jsonArchives      = (JSONArray) jsonObject.get("archives");
+            JSONArray jsonArchive       = (JSONArray) jsonObject.get("archives");
+            JSONArray jsonMusic         = (JSONArray) jsonObject.get("musics");
+            JSONArray jsonAndroid       = (JSONArray) jsonObject.get("androids");
+            JSONArray jsonWeb           = (JSONArray) jsonObject.get("webs");
+            JSONArray jsonImages        = (JSONArray) jsonObject.get("images");
+            JSONArray jsonDeb           = (JSONArray) jsonObject.get("debs");
+            JSONArray jsonExe           = (JSONArray) jsonObject.get("exes");
+            JSONArray jsonDesktop       = (JSONArray) jsonObject.get("desktops");
+            JSONArray jsonOffice        = (JSONArray) jsonObject.get("offices");
+            JSONArray jsonTorrent       = (JSONArray) jsonObject.get("torrents");
+
             JSONObject pathFolder       = (JSONObject) jsonObject.get("pathFolder");
+
+            int i;
+            for (i = 0; i < jsonArchive.size(); i++) {
+                archive.add((String) jsonArchive.get(i));
+            }
+            for (i = 0; i < jsonMusic.size(); i++ ) {
+                music.add((String) jsonMusic.get(i));
+            }
+            for (i = 0; i < jsonAndroid.size(); i++ ) {
+                android.add((String) jsonAndroid.get(i));
+            }
+            for (i = 0; i < jsonWeb.size(); i++ ) {
+                web.add((String) jsonWeb.get(i));
+            }
+            for (i = 0; i < jsonImages.size(); i++ ) {
+                image.add((String) jsonImages.get(i));
+            }
+            for (i = 0; i < jsonDeb.size(); i++ ) {
+                deb.add((String) jsonDeb.get(i));
+            }
+            for (i = 0; i < jsonExe.size(); i++ ) {
+                exe.add((String) jsonExe.get(i));
+            }
+            for (i = 0; i < jsonDesktop.size(); i++) {
+                desktop.add((String) jsonDesktop.get(i));
+            }
+            for (i = 0; i < jsonOffice.size(); i++) {
+                office.add((String) jsonOffice.get(i));
+            }
+            for (i = 0; i < jsonTorrent.size(); i++) {
+                torrent.add((String) jsonTorrent.get(i));
+            }
 
             downloads       = (String) jsonObject.get("pathDownloads");
             archives        = (String) pathFolder.get("archive");
@@ -70,8 +114,7 @@ public class CreateData {
 
     }
 
-    private void moveFile (final String[] nameType, String path) throws IOException {
-
+    private void moveFile (final ArrayList<String> nameType, String path) throws IOException {
         File folder = new File(this.downloads);
         this.files = folder.list(new FilenameFilter() {
             @Override
@@ -87,7 +130,7 @@ public class CreateData {
                 File newFile    = new File(path + fileName);
 
                 if (oldFile.renameTo(newFile)) {
-                    System.out.print("Move file: " + fileName + "\n");
+                    System.out.print("Move file: " + fileName + " to directory " + path + "\n");
                 } else System.out.print("Error: " + newFile.getPath() +"\n");
             }
         } System.out.println("Файлов с вашим расширением больше нет");
