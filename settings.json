@@ -1,0 +1,44 @@
+{
+    "pathDownloads" : "/home/jashka/Загрузки/",
+    "pathFolder" : {
+        "archive" : "/home/jashka/Загрузки/Archive/",
+        "music" : "/home/jashka/Загрузки/Music/",
+        "android" : "/home/jashka/Загрузки/Android/",
+        "web" : "/home/jashka/Загрузки/Web/",
+        "image" : "/home/jashka/Загрузки/Image/",
+        "office" : "/home/jashka/Загрузки/Office/",
+        "deb" : "/home/jashka/Загрузки/Deb/",
+        "exe" : "/home/jashka/Загрузки/Exe/",
+        "desktop" : "/home/jashka/Загрузки/Desktop/",
+        "torrent" : "/home/jashka/Загрузки/Torrent"
+    },
+    "archives" : [
+        ".gzip",
+        ".zip",
+        ".rar",
+        ".tar.gz",
+        ".7z",
+        ".tgz",
+        ".tar.xz"
+    ],
+    "musics" : [
+        ".mp3",
+        ".waw"
+    ],
+    "androids" : [
+        ".apk"
+    ],
+    "webs" : [
+        ".php",
+        ".js",
+        ".html",
+        ".phtml",
+        ".htm",
+        ".json"
+    ],
+    "images" : [
+        ".ico",
+        ".jpg",
+        ".png"
+    ]
+}
